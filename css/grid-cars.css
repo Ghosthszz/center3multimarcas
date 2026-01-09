@@ -1,0 +1,55 @@
+.container {
+  max-width: 1450px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.filters input,
+.filters select {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  font-weight: 500;
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+
+.car-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  border-top: 5px solid var(--primary);
+  transition: transform 0.25s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-6px);
+}
+
+.car-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card-info .price {
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 800;
+}

@@ -1,0 +1,15 @@
+:root {
+  --primary: #0d6efd;
+  --secondary: #212529;
+  --bg: #f4f6f8;
+  --white: #ffffff;
+  --gray: #6c757d;
+  --success: #25d366;
+
+  --radius: 8px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  --desktop: 1200px;
+  --tablet: 900px;
+  --mobile: 600px;
+}

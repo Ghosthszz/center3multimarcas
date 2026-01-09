@@ -1,0 +1,51 @@
+[
+  {
+    "id": "car_001",
+    "ordem": 1,
+    "nome": "Volkswagen Golf GTI",
+    "preco": 129900,
+    "cor": "Vermelho",
+    "placa": "ABC1D23",
+    "ano": 2020,
+    "km": 45800,
+    "observacoes": "Veículo em excelente estado, revisões em dia.",
+    "imagens": {
+      "capa": "images/cars/carro_ABC1D23_capa.jpg",
+      "galeria": [
+        "images/cars/carro_ABC1D23_1.jpg",
+        "images/cars/carro_ABC1D23_2.jpg",
+        "images/cars/carro_ABC1D23_3.jpg"
+      ]
+    },
+    "favoritos": 3,
+    "ativo": true,
+    "criadoEm": "2025-01-05T18:30:00Z",
+    "criadoPor": "admin@center3.com",
+    "editadoEm": null,
+    "editadoPor": null
+  },
+  {
+    "id": "car_002",
+    "ordem": 2,
+    "nome": "Honda Civic Touring",
+    "preco": 118500,
+    "cor": "Preto",
+    "placa": "DEF4G56",
+    "ano": 2019,
+    "km": 62000,
+    "observacoes": "",
+    "imagens": {
+      "capa": "images/cars/carro_DEF4G56_capa.jpg",
+      "galeria": [
+        "images/cars/carro_DEF4G56_1.jpg",
+        "images/cars/carro_DEF4G56_2.jpg"
+      ]
+    },
+    "favoritos": 1,
+    "ativo": true,
+    "criadoEm": "2025-01-10T14:10:00Z",
+    "criadoPor": "admin@center3.com",
+    "editadoEm": "2025-01-15T11:22:00Z",
+    "editadoPor": "admin@center3.com"
+  }
+]

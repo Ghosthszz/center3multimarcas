@@ -1,0 +1,40 @@
+@media (max-width: 1200px) {
+  .cars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modal {
+    flex-direction: column;
+  }
+
+  .modal-carousel,
+  .modal-info {
+    width: 100%;
+  }
+
+  .modal-carousel img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+  }
+}

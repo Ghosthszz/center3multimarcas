@@ -1,10 +1,10 @@
 // js/env.js
 export const ENV = {
   GITHUB: {
-    OWNER: "SEU_USUARIO",
-    REPO: "SEU_REPOSITORIO",
+    OWNER: "ghosthszz",
+    REPO: "center3multimarcas",
     BRANCH: "main",
-    TOKEN: "ghp_SEU_TOKEN_AQUI",
+    TOKEN: "",
 
     FILES: {
       USERS: "data/dados.json",
@@ -14,7 +14,7 @@ export const ENV = {
   },
 
   CRYPTO: {
-    SECRET_KEY: "CHAVE_SUPER_SECRETA_256_BITS",
+    SECRET_KEY: "8f3c9a1e6b2d4f7c0a91e5b8d6c4f2a79e0b1d5c3a6f84e92b7d0c1a5e4f63",
     IV: "1234567890123456"
   },
 

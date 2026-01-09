@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anúncio de Veículos</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/grid-cars.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Crypto -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="nav-left">
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+    <nav>
+      <a href="index.html" class="active">HOME</a>
+      <a href="pages/quem-somos.html">QUEM SOMOS</a>
+      <a href="pages/informacoes.html">INFORMAÇÕES</a>
+    </nav>
+  </div>
+
+  <div class="nav-right" id="navUser">
+    <!-- JS injeta Login ou Usuário -->
+    <a href="login.html" class="btn-login">
+      <i class="fa-solid fa-right-to-bracket"></i> LOGIN
+    </a>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="container">
+
+  <!-- FILTROS -->
+  <section class="filters">
+    <input type="text" id="searchInput" placeholder="Buscar por nome, ano, preço..." />
+
+    <select id="filterColor">
+      <option value="">Todas as cores</option>
+      <option value="Preto">Preto</option>
+      <option value="Branco">Branco</option>
+      <option value="Prata">Prata</option>
+      <option value="Vermelho">Vermelho</option>
+    </select>
+
+    <select id="filterOrder">
+      <option value="">Ordenar</option>
+      <option value="preco_asc">Preço ↑</option>
+      <option value="preco_desc">Preço ↓</option>
+      <option value="ano_desc">Ano ↓</option>
+      <option value="km_asc">KM ↑</option>
+    </select>
+  </section>
+
+  <!-- GRID DE CARROS -->
+  <section class="cars-grid" id="carsGrid">
+    <!-- Cards gerados via JS -->
+  </section>
+
+</main>
+
+<!-- ================= MODAL ================= -->
+<div class="modal-overlay" id="carModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <div class="modal-carousel" id="modalCarousel">
+      <!-- Imagens -->
+    </div>
+
+    <div class="modal-info">
+      <h2 id="modalTitle"></h2>
+      <p class="price" id="modalPrice"></p>
+
+      <ul class="details">
+        <li><strong>Ano:</strong> <span id="modalAno"></span></li>
+        <li><strong>Cor:</strong> <span id="modalCor"></span></li>
+        <li><strong>KM:</strong> <span id="modalKm"></span></li>
+      </ul>
+
+      <p class="obs" id="modalObs"></p>
+
+      <a id="whatsBtn" target="_blank" class="btn-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i>
+        Gostou? Fale conosco
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= JS ================= -->
+<script type="module">
+import { ENV } from "./js/env.js";
+import { getFile } from "./js/githubApi.js";
+import { getLoggedUser } from "./js/auth.js";
+
+const grid = document.getElementById("carsGrid");
+const modal = document.getElementById("carModal");
+
+let cars = [];
+
+/* ================= USER NAV ================= */
+const navUser = document.getElementById("navUser");
+const user = getLoggedUser();
+
+if (user) {
+  navUser.innerHTML = `
+    <div class="user-box">
+      <i class="fa-solid fa-user"></i>
+      <span>OLÁ, ${user.nome.toUpperCase()}</span>
+    </div>
+  `;
+}
+
+/* ================= LOAD CARS ================= */
+async function loadCars() {
+  const { content } = await getFile(ENV.GITHUB.FILES.CARS);
+  cars = content.carros.sort((a, b) => a.ordem - b.ordem);
+  renderCars(cars);
+}
+
+function renderCars(list) {
+  grid.innerHTML = "";
+
+  list.forEach(car => {
+    const card = document.createElement("div");
+    card.className = "car-card";
+    card.onclick = () => openModal(car);
+
+    card.innerHTML = `
+      <img src="${car.capa}" alt="${car.nome}">
+      <div class="card-info">
+        <h3>${car.nome}</h3>
+        <p class="price">R$ ${car.preco.toLocaleString()}</p>
+        <span>${car.ano} • ${car.km.toLocaleString()} km</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ================= MODAL ================= */
+function openModal(car) {
+  document.getElementById("modalTitle").textContent = car.nome;
+  document.getElementById("modalPrice").textContent =
+    "R$ " + car.preco.toLocaleString();
+  document.getElementById("modalAno").textContent = car.ano;
+  document.getElementById("modalCor").textContent = car.cor;
+  document.getElementById("modalKm").textContent =
+    car.km.toLocaleString() + " km";
+  document.getElementById("modalObs").textContent =
+    car.observacoes || "";
+
+  const carousel = document.getElementById("modalCarousel");
+  carousel.innerHTML = "";
+  car.fotos.forEach(img => {
+    const i = document.createElement("img");
+    i.src = img;
+    carousel.appendChild(i);
+  });
+
+  document.getElementById("whatsBtn").href =
+    `https://wa.me/${ENV.WHATSAPP.PHONE}?text=` +
+    encodeURIComponent(
+      `Olá, gostei do veículo ${car.nome} ${car.ano} por R$ ${car.preco}`
+    );
+
+  modal.classList.add("active");
+}
+
+window.closeModal = () => modal.classList.remove("active");
+
+/* ================= FILTERS ================= */
+document.getElementById("searchInput").addEventListener("input", e => {
+  const v = e.target.value.toLowerCase();
+  renderCars(
+    cars.filter(c =>
+      c.nome.toLowerCase().includes(v) ||
+      String(c.ano).includes(v) ||
+      String(c.preco).includes(v)
+    )
+  );
+});
+
+document.getElementById("filterColor").addEventListener("change", e => {
+  renderCars(
+    e.target.value
+      ? cars.filter(c => c.cor === e.target.value)
+      : cars
+  );
+});
+
+/* ================= INIT ================= */
+loadCars();
+</script>
+
+</body>
+</html>
