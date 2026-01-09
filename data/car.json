@@ -27,18 +27,18 @@
   {
     "id": "car_002",
     "ordem": 2,
-    "nome": "Honda Civic Touring",
+    "nome": "Santa fe 2014",
     "preco": 118500,
     "cor": "Preto",
-    "placa": "DEF4G56",
-    "ano": 2019,
+    "placa": "FJZ0G46",
+    "ano": 2014,
     "km": 62000,
     "observacoes": "",
     "imagens": {
-      "capa": "images/cars/carro_DEF4G56_capa.jpg",
+      "capa": "images/cars/carro_FJZ0G46_capa.jpg",
       "galeria": [
-        "images/cars/carro_DEF4G56_1.jpg",
-        "images/cars/carro_DEF4G56_2.jpg"
+        "images/cars/carro_FJZ0G46_1.jpg",
+        "images/cars/carro_FJZ0G46_2.jpg"
       ]
     },
     "favoritos": 1,
