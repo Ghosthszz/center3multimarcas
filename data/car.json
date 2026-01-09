@@ -35,10 +35,10 @@
     "km": 62000,
     "observacoes": "",
     "imagens": {
-      "capa": "images/cars/carro_FJZ0G46_capa.jpg",
+      "capa": "images/cars/carro_FJZ0G46/capa.jpg",
       "galeria": [
-        "images/cars/carro_FJZ0G46_1.jpg",
-        "images/cars/carro_FJZ0G46_2.jpg"
+        "images/cars/carro_FJZ0G46/1.jpg",
+        "images/cars/carro_FJZ0G46/2.jpg"
       ]
     },
     "favoritos": 1,
