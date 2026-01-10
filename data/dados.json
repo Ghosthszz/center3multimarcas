@@ -1,4 +1,13 @@
 {
   "usuarios": [
+    {
+      "id": "bbb43cc3-b8b1-4117-beea-b9fda87f699d",
+      "nome": "blk",
+      "email": "gu@gmail.com",
+      "senha": "Nz6huZHvDN5PeOOthrar7A==",
+      "role": "user",
+      "favoritos": [],
+      "criadoEm": "2026-01-10T00:44:15.200Z"
+    }
   ]
 }
