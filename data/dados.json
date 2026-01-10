@@ -8,6 +8,15 @@
       "role": "user",
       "favoritos": [],
       "criadoEm": "2026-01-10T00:07:32.472Z"
+    },
+    {
+      "id": "da58f6d4-83b1-4b89-8017-fb0d5fb3f51c",
+      "nome": "blk gugu",
+      "email": "gu@gmail.com",
+      "senha": "RyiodmNoaDlGMv03zh9KUQ==",
+      "role": "user",
+      "favoritos": [],
+      "criadoEm": "2026-01-10T00:09:14.612Z"
     }
   ]
 }
